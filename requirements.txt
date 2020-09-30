@@ -1,0 +1,5 @@
+selenium
+werkzeug
+flask
+pyyaml
+chromedriver-binary==85.0.4183.87
