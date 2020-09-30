@@ -1,0 +1,20 @@
+---
+- name: Sample playbook
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Render a network diagram
+      uri:
+        url: "http://172.17.0.2:8080/api/render"
+        method: POST
+        body_format: form-multipart
+        body:
+          file:
+            filename: sample.yml
+        return_content: true
+        status_code: 200
+      register: render_image_result
+
+    - copy:
+        content: "{{ render_image_result.content }}"
+        dest: sample_image.png
