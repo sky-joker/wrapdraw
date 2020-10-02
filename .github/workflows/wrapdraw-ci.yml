@@ -28,3 +28,14 @@ jobs:
 
       - name: Run syntax test
         run: tox -e `echo py${{ matrix.python }} | sed 's/\.//g'`
+
+  image_build:
+    runs-on: ubuntu-latest
+    name: image build
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Build container image
+        run: "docker build . -t wrapdraw:latest"
