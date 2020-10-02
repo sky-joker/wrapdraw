@@ -4,9 +4,9 @@ on:
   pull_request:
 
 jobs:
-  syntax_check:
+  lint:
     runs-on: ubuntu-latest
-    name: py${{ matrix.python }}
+    name: Lint(py${{ matrix.python }})
     strategy:
       matrix:
         python:
@@ -31,7 +31,7 @@ jobs:
 
   image_build:
     runs-on: ubuntu-latest
-    name: image build
+    name: Build container image
 
     steps:
       - name: Check out code
@@ -39,3 +39,24 @@ jobs:
 
       - name: Build container image
         run: "docker build . -t wrapdraw:latest"
+
+  app_test:
+    runs-on: ubuntu-latest
+    name: App test
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: pip install -r ansible
+
+      - name: Build container image
+        run: "docker build . -t wrapdraw:latest"
+
+      - name: Start wrapdraw image
+        run: "docker run -itd --name wrapdraw wrapdraw:latest"
+
+      - name: Download NW diagram
+        run: ansible-playbook main.yml
+        working-directory: ./sample/ansible/
