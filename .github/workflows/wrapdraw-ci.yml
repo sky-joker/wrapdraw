@@ -49,7 +49,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install dependencies
-        run: pip install -r ansible
+        run: pip install ansible
 
       - name: Build container image
         run: "docker build . -t wrapdraw:latest"
@@ -57,6 +57,6 @@ jobs:
       - name: Start wrapdraw image
         run: "docker run -itd --name wrapdraw wrapdraw:latest"
 
-      - name: Download NW diagram
+      - name: Download NW diagram with Ansible
         run: ansible-playbook main.yml
         working-directory: ./sample/ansible/
