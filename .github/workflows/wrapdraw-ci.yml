@@ -8,10 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     name: 
     strategy:
-      python:
-        - 3.6
-        #- 3.7
-        #- 3.8
+      matrix:
+        python:
+          - 3.6
+          #- 3.7
+          #- 3.8
 
     steps:
       - name: Check out code
