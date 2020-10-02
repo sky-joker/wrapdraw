@@ -23,5 +23,8 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
 
+      - name: Install dependencies
+        run: pip install -r test-requirements.txt
+
       - name: Run syntax test
         run: tox
