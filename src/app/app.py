@@ -4,6 +4,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 from werkzeug.utils import secure_filename
 from flask import Flask, request, send_file
+from typing import Union, Dict, Any, Tuple
 import os
 import time
 import yaml
@@ -45,7 +46,7 @@ else:
     app.config['LISTEN_PORT'] = '8080'
 
 
-def render_diagram(yaml_data, filename):
+def render_diagram(yaml_data: str, filename: str) -> str:
     chrome_options = Options()
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--no-sandbox')
@@ -90,18 +91,18 @@ def render_diagram(yaml_data, filename):
     return absolute_path_save_rendered_image_file
 
 
-def allowed_file(file_name):
+def allowed_file(file_name: str) -> bool:
     if '.'.join(file_name.rsplit('.', 2)[1:3]).lower() in ALLOWED_EXTENSIONS:
         return True
 
     return False
 
 
-def valid_yaml(yaml_data):
+def valid_yaml(yaml_data: str) -> Tuple[Union[bool, str], Dict[Any, Any]]:
     try:
         yaml_parse = yaml.safe_load(yaml_data)
     except Exception as e:
-        return e
+        return str(e), {}
 
     return True, yaml_parse
 
