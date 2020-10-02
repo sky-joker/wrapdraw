@@ -1,0 +1,26 @@
+name: wrapdraw-ci
+on:
+  push:
+  pull_request:
+
+jobs:
+  syntax_check:
+    runs-on: ubuntu-latest
+    name: 
+    strategy:
+      python:
+        - 3.6
+        #- 3.7
+        #- 3.8
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Run syntax test
+        run: tox
