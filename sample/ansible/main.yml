@@ -12,6 +12,7 @@
           file:
             filename: sample.yml
         return_content: true
+        timeout: 300
         status_code: 200
       register: render_image_result
 
