@@ -6,13 +6,13 @@ on:
 jobs:
   syntax_check:
     runs-on: ubuntu-latest
-    name: 
+    name: py${{ matrix.python }}
     strategy:
       matrix:
         python:
           - 3.6
-          #- 3.7
-          #- 3.8
+          - 3.7
+          - 3.8
 
     steps:
       - name: Check out code
@@ -27,4 +27,4 @@ jobs:
         run: pip install -r test-requirements.txt
 
       - name: Run syntax test
-        run: tox
+        run: tox -e `echo py${{ matrix.python }} | sed 's/\.//g'`
