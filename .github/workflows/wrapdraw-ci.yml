@@ -48,6 +48,9 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
 
+      - name: Uninstall existing Ansible because to install the latest Ansible
+        run: pip uninstall -y ansible
+
       - name: Install dependencies
         run: pip install ansible
 
