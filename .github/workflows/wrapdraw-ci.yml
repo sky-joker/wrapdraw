@@ -48,8 +48,13 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
 
-      - name: Uninstall existing Ansible because to install the latest Ansible
-        run: sudo apt remove --purge ansible
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.6
+
+      #- name: Uninstall existing Ansible because to install the latest Ansible
+      #  run: sudo apt remove --purge ansible
 
       - name: Install dependencies
         run: pip install ansible
