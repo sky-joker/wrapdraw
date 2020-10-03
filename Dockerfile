@@ -1,5 +1,5 @@
 FROM centos:8
-ADD /etc/google-chrome.repo /etc/yum.repos.d/google-chrome.repo
+ADD etc/google-chrome.repo /etc/yum.repos.d/google-chrome.repo
 RUN dnf -y install python3 google-chrome-stable
 RUN pip3 install selenium \
                  werkzeug \
