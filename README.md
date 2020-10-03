@@ -56,7 +56,7 @@ If you want to use locally constructed drawthe, set the URL environment the foll
 # docker run -itd --name wrapdraw --rm -e URL='http://172.17.0.3' skyjokerxx/wrapdraw:latest
 ```
 
-If you felt an NW diagram small, you can change its size the following procedure.
+If you felt the NW diagram small, you can change its size the following procedure.
 
 ```
 # docker run -itd --name wrapdraw --rm -e CHROME_WINDOW_SIZE='2560,2048' skyjokerxx/wrapdraw:latest
